@@ -33,12 +33,11 @@ function exibeTarefas() {
         cardTArefas.innerHTML +=
             `<span>
             <p> ${task.titulo}</p>
-            <p onclick="editaTarefas()"> ${task.status}</p>
+            <p onclick="alteraStatus(event)"> ${task.status}</p>
             <button onclick="editaTarefas()"> Editar </button>
             <button onclick="excluiTarefa(event)"> Excluir </button>
         </span>`;
     }
-
 
 }
 
@@ -49,7 +48,8 @@ function excluiTarefa(event) {
     let statusTarefa = elementoPai.children[1].innerText;
 
     if (statusTarefa === 'Feito') {
-        alert('Não é possível excluir a tarefa com o status' + statusTarefa);
+        disparaAlerta("Não é possível excluir a tarefa");
+        // alert('Não é possível excluir a tarefa com o status' + statusTarefa);
         return;
     }
 
@@ -57,11 +57,35 @@ function excluiTarefa(event) {
 
     for (let [index, tarefa] of tarefas.entries()) {
         if (tituloTarefa === tarefa.titulo) {
-            tarefas.splice(index,1);//tarefas.splice(index, 1) -> splice percorre e exclui oq eu indicar pelo índice 
+            tarefas.splice(index, 1);//tarefas.splice(index, 1) -> splice percorre e exclui oq eu indicar pelo índice 
         }
     };
 
     elementoPai.remove();
-    
+
+    //criar uma function para capturar a div e passar por parametro uma mensagem no inner.html com esta mensagem
+    //lá no excluir a tarefa, vou passar esta função e vou exibir na div alert
+
+}
+function alteraStatus(event) {
+    let status = event.target.innerText;
+
+    let elementoPai = event.target.parentNode;
+    let tituloTarefa = elementoPai.children[0].innerText;
+
+    switch(status){
+        case 'à executar' : status = "executando"; break;
+        case 'executando' : status = "feito"; break;
+        case 'feito' : alert(`O status ${status} não pode ser alterado`); break;
+        default : alert(`O status ${status} não poderá ser alterado`);
+    }
+
+    for(let valor of tarefas)
+    {
+        if(tituloTarefa === valor.titulo){
+            valor.status = status;
+            event.target.innerText = status;
+        }
+    }
 
 }
