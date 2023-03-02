@@ -1,40 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>to-do-list</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Babylonica&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="Assets/css/style.css">
+
+    <title>TO-DO-LIST</title>
+
 </head>
 
 <body>
-    <h1> App to-do-list </h1>
+<!--
+    no to do list 
+        - uma entrada de dados ( que será a tarefa á ser executada)
+        - precisa fazer algumas coisas com a tarefa :
+            - excluir tarefa;
+            - modificar tarefa;
+            - alterar o status para ( em execução e feito);
+-->
+    <h1 class="centralizar"> App to-do-list </h1>
 
-    <p>
-        <strong> Organize as tarefas do seu dia a dia com muito mais facilidade.</strong>
+    <p class="centralizar">
+        <strong> Organize as tarefas do seu dia a dia com muito mais facilidade. </strong>
     </p>
 
-    <main>
-
-        <h2> Tarefas </h2>
-
-        <div>
+    <main class="centralizar">
+        <!-- algumas tag tem sentido ( semantica das tags ) -->
+        <h2 id="submenu" class="centralizar"> Tarefas </h2>
+        
+        <div class="centralizar">
             <input type="text" id="tarefa" placeholder="Insira sua tarefa!">
-            <button onclick="adicionarTarefas()"> Enviar </button>
-           
+            <button class="btnEnviar" onclick="adicionarTarefas()"> Enviar Tarefa </button>
         </div>
+        
+        <div id="alertas" class="centralizar"> </div>
 
-        <div id="alertas">
-            <p id="mensagemErro"></p>
-        </div>
-
-        <section>
+        <div class="tarefas">
+            <section class="tarefaExecutar cardTarefa">
             
-        </section>
+            </section>
+
+            <section class="tarefaExecutando cardTarefa">
+            
+            </section>
+
+            <section class="tarefaFeito cardTarefa">
+            
+            </section>
+        </div>
+
     </main>
+    <script src="Assets/js/script.js"> </script>
 
-    <script src="Assets/js/script.js"></script>
 </body>
-
 </html>

@@ -1,0 +1,211 @@
+/*
+
+seletores
+    * - seletor universal;
+    . - seletor por classe (class);
+    # - seletor por identificador (id);
+    nome - seletor por nome da tag;
+
+*/
+
+/*
+    <h1> App to-do-list </h1>
+    - A tag é uma caixa que pode ser : 
+        - bloco (block)  : empilha uma encima da outra (de cima para baixo)
+        - linha (inline) : empilha uma ao lado da outra ( da esquerda para a direita)
+                            a gente NÃO consegue aumentar a largura e a altura;
+                            a gente NÃO consegue fazer nada que necessite de espaço no
+                            texto.
+                            a gente Não consegue colocar espaçamento interno ( padding )
+                            emcima nem embaixo.
+    
+    <input type="text" id="tarefa" placeholder="Insira sua tarefa!">
+    <img src="">
+    - As tags podem ou não ter conteúdo
+*/
+/*
+- sintaxe do css
+seletor{ propriedade : valor; }
+
+*/
+/* 
+h1, p, h2, span{
+    rotate: -90deg;
+    background-color: red;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 40px;
+    font-family: Georgia;
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-top: 200px;
+    padding-bottom: 200px;
+    text-decoration: overline;
+    text-transform: uppercase;
+    text-shadow: 20px 20px 20px yellow;
+    height: 300px;    
+    width: 600px;
+    cursor: col-resize;
+} */
+/*
+<!-- PROPRIEDADES MAIS COMUNS -->       
+            <!-- Texto / font:
+                color;
+                word-spacing;
+                font;
+                font-family;
+                font-size;
+                font-weight;
+                letter-spacing;
+                line-height;
+                text-align;
+                text-decoration;
+                text-ident;
+                text-transform;
+                vertical-align.
+            Lista :
+                list-style;
+                list-style-image;
+                list-style-position;
+                list-style-type.
+            Plano de fundo :
+                background;
+                background-attachment;
+                bakground-color;
+                bakground-image;
+                bakground-position;
+                bakground-repeat.
+            Display :
+                display;
+                float;
+                clear;
+                overflow;
+                visibility.
+            Caixa :
+                border;
+                border-color;
+                border-style;
+                border-width;
+                height;
+                margin;
+                padding;
+                width;
+                border-radius;
+                box-sizing.
+            Posição :
+                position;
+                top;
+                bottom;
+                left;
+                right;
+                z-index.
+            outros :
+                cursor.          */
+
+                @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+                *{
+                    margin: 0;
+                    padding: 0; 
+                }               
+                
+                body{
+                    background-color: rgb(245, 238, 221);
+                }
+                
+                h1{
+                    font-family: 'Babylonica', cursive;
+                    font-weight: lighter;
+                    font-size: 100px;
+                    text-shadow: -3px 3px 5px 0 yellow;
+                }
+                
+                p, h2{
+                    font-family: 'Roboto Condensed', sans-serif;
+                    color: chocolate;
+                }
+                
+                p strong{
+                    margin-top: 30px;
+                    margin-bottom: 50px;
+                    font-size: 30px;
+                }
+                
+                #submenu{
+                    margin-bottom: 10px;
+                    color: brown;
+                }
+                
+                .centralizar{
+                    text-align: center;
+                }
+                
+                .cardTarefa{
+                    height: 500px;
+                    width: 200px;
+                    color: darkmagenta;
+                
+                    /* border-width: 2px;
+                    border-color: blue;
+                    border-style: groove; */
+                
+                    /*border: 2px solid red;*/
+                    /*
+                        box-shadow: 
+                            primeiro valor : andar na horizontal ( - anda para a esquerda | + anda para a direita)
+                            segundo valor  : andar na vertical ( - anda para a cima | + anda para a baixo)
+                            terceiro valor : fica mais duro a cor ou mais espalhado
+                            quarto valor : aumenta o tamanho da sombra
+                    */
+                    box-shadow: -5px -5px 20px 10px rgb(215, 187, 187);
+                }
+                
+                .tarefas{
+                    width: 100%;
+                    height: 500px;
+                    margin-top: 50px;
+                    padding-top: 20px;
+                    padding-bottom: 20px;   
+                }
+                
+                .tarefaExecutar{
+                    float: left;
+                    margin-left: 100px;
+                }
+                
+                .tarefaExecutando{
+                    float:left;
+                    margin-left: 50px;
+                    margin-right: 50px;
+                    color: blue;
+                }
+                
+                .tarefaFeito{
+                    float: left;
+                    color: blue;
+                }
+                
+                input{
+                    width: 300px;
+                    height: 30px;
+                    padding-left: 10px;
+                    outline: none;
+                    border: none;
+                    background-color: rgb(170, 150, 188);
+                    border-radius: 5px;
+                   /* color: blue;*/
+                }                
+                .btnEnviar{
+                    height: 30px;
+                    padding-left: 10px;
+                    padding-right: 10px;
+                    border-color: rgb(145, 98, 186);
+                    border-radius: 5px;
+                    background-color: rgb(170, 150, 188);
+                }
+                button{
+                    background-color: rgb(193, 194, 197);
+                    color: rgb(87, 85, 85);
+                    font-weight: bold;                    
+                }
+                

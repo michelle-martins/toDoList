@@ -11,6 +11,12 @@ let tarefas = [];
 function adicionarTarefas() {
     let tarefa = document.querySelector("#tarefa");
 
+    if (tarefa.value === ''){
+
+        exibeMensagem('Insira a tarefa!');
+        return;
+    }
+
     tarefas.push( // inseriu a tarefa com push
         {
             titulo: tarefa.value, // tiulo é uma propriedade e o valor da propriedade (podemos inserir qtas propriedas quiser)
@@ -21,23 +27,24 @@ function adicionarTarefas() {
 
     tarefa.value = '';
 
+
+
     exibeTarefas(); //chamei a função para exibir a minha tarefa (que adicionei)
 }
 
 function exibeTarefas() {
-    let cardTArefas = document.querySelector('section');
-
-    cardTArefas.innerHTML = '';
+    let cardTArefas = document.querySelector('.tarefaExecutar');
+    let tagSpan = document.createElement('span');
 
     for (let task of tarefas) {
-        cardTArefas.innerHTML +=
-            `<span>
-            <p> ${task.titulo}</p>
-            <p onclick="alteraStatus(event)"> ${task.status}</p>
-            <button onclick="editaTarefas()"> Editar </button>
-            <button onclick="excluiTarefa(event)"> Excluir </button>
-        </span>`;
-    }
+        tagSpan.innerHTML =
+            `<p>${task.titulo}</p>
+            <p onclick="alteraStatus(event)">${task.status}</p>
+            <button onclick="editaTarefas(event)"> Editar </button>
+            <button onclick="excluiTarefa(event)"> Excluir </button>`;
+    };
+
+    cardTArefas.append(tagSpan);
 
 }
 
@@ -45,10 +52,10 @@ function excluiTarefa(event) {
     let elementoPai = event.target.parentNode; //target = alvo. O alvo será o botão button e ele irá trazer o proprio botão exlcuiTarefa
 
     let tituloTarefa = elementoPai.children[0].innerText;
-    let statusTarefa = elementoPai.children[1].innerText;
+    let status = elementoPai.children[1].innerText;
 
-    if (statusTarefa === 'Feito') {
-        disparaAlerta("Não é possível excluir a tarefa");
+    if (status === 'Feito') {
+        exibeMensagem(`não é possível excluir a tarefa com o status ${status}`);
         // alert('Não é possível excluir a tarefa com o status' + statusTarefa);
         return;
     }
@@ -68,16 +75,16 @@ function excluiTarefa(event) {
 
 }
 function alteraStatus(event) {
-    let status = event.target.innerText;
 
+    let status = event.target.innerText;
     let elementoPai = event.target.parentNode;
     let tituloTarefa = elementoPai.children[0].innerText;
 
     switch(status){
         case 'à executar' : status = "executando"; break;
         case 'executando' : status = "feito"; break;
-        case 'feito' : alert(`O status ${status} não pode ser alterado`); break;
-        default : alert(`O status ${status} não poderá ser alterado`);
+        case 'feito' : exibeMensagem(`O status ${status} não pode ser alterado`); break;
+        default : exibeMensagem(`O status ${status} não poderá ser alterado`);
     }
 
     for(let valor of tarefas)
@@ -88,4 +95,58 @@ function alteraStatus(event) {
         }
     }
 
+    let sessaoTarefa = elementoPai.parentNode;
+    sessaoTarefa.removeChild(elementoPai);
+
+    if (status == 'executando'){
+        document.querySelector('.tarefaExecutando').appendChild(elementoPai);
+    } else if(status == 'feito'){
+    document.querySelector('.tarefaFeito').appendChild(elementoPai);
+    } else{
+        document.querySelector('.tarefaExecutar').appendChild(elementoPai);
+    }
+
 }
+
+function editaTarefas(event, titulo) {
+
+    let elementoPai = event.target.parentNode;
+
+    let status = elementoPai.children[0].innerHTML;
+
+    
+    
+    if(status !== 'à executar'){
+        exibeMensagem(`não é possível editar a tarefa com o status ${status}`);
+        return;
+    }
+
+    if(event.target.innerText == 'Gravar'){
+
+        let tituloTarefa = elementoPai.children[0].innerHTML;
+        
+        for(let tarefa of tarefas ){
+            if(tarefa.titulo === titulo){
+                tarefa.titulo = tituloTarefa;
+            }
+        }
+
+        elementoPai.children[0].setAttribute('contenteditable','false');
+
+        event.target.innerText = 'Editar';
+        return;
+    }
+    event.target.innerText = 'Gravar';
+
+    elementoPai.children[0].setAttribute('contenteditable','true');
+    
+}
+
+function exibeMensagem( mensagem ){
+
+    // let divMensagem = document.querySelector('#alertas');
+    // divMensagem.innerText = mensagem;
+
+    document.querySelector('#alertas').innerHTML = `<strong>${mensagem}<strong/>`;
+}
+    
